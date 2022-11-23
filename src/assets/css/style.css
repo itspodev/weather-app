@@ -57,15 +57,18 @@ body p {
 }
 .weather-card .extra-weather-infos {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
   gap: 1em;
 }
 .weather-card .extra-weather-infos div:nth-child(n) {
   text-align: center;
+  background-color: rgba(255, 255, 255, 0.2);
+  padding: 1em;
+  border-radius: 10px;
 }
 .weather-card .extra-weather-infos p:nth-child(1) {
   text-transform: uppercase;
-  font-size: 1.3rem;
+  font-size: 1.2rem;
   color: #808080;
 }
 .weather-card .extra-weather-infos p:nth-child(2) {
