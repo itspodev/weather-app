@@ -2,7 +2,12 @@ import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 
-export default function LocationInput({ location, onChangeLocation }) {
+export default function LocationInput({
+  location,
+  onChangeLocation,
+  onSubmitLocation,
+  onEnterKeyPress,
+}) {
   return (
     <>
       <div className="search-weather-location">
@@ -10,10 +15,11 @@ export default function LocationInput({ location, onChangeLocation }) {
         <input
           type="text"
           value={location}
-          onChange={(event) => onChangeLocation(event.target.value)}
+          onKeyPress={onEnterKeyPress()}
+          onChange={(e) => onChangeLocation(e.target.value)}
           placeholder="Rechercher une ville"
         ></input>
-        <button type="submit" onSubmit={(e) => e.preventDefault}>
+        <button type="submit" onClick={(e) => onSubmitLocation()}>
           <FontAwesomeIcon icon={faMagnifyingGlass} />
         </button>
       </div>
