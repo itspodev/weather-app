@@ -53,6 +53,35 @@ body {
   display: flex;
   flex-direction: column;
   gap: 1em;
+  .search-weather-location {
+    align-self: center;
+    input {
+      outline: none;
+      border: none;
+      border-radius: 18px;
+      padding: 0.5em 1em;
+      background: rgb(128, 128, 128, 0.18);
+      color: #fff;
+      font-family: inherit;
+      font-size: 1rem;
+    }
+    button {
+      margin-left: 0.5em;
+      outline: none;
+      border: none;
+      border-radius: 50%;
+      font-size: 1em;
+      height: 37px;
+      width: 37px;
+      background: rgb(128, 128, 128, 0.18);
+      color: white;
+      cursor: pointer;
+      transition: 0.2s ease-in-out;
+      &:hover {
+        background: rgb(128, 128, 128, 2.18);
+      }
+    }
+  }
   .main-weather-infos {
     display: flex;
     flex-direction: column;

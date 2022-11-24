@@ -50,6 +50,35 @@ body p {
   flex-direction: column;
   gap: 1em;
 }
+.weather-card .search-weather-location {
+  align-self: center;
+}
+.weather-card .search-weather-location input {
+  outline: none;
+  border: none;
+  border-radius: 18px;
+  padding: 0.5em 1em;
+  background: rgba(128, 128, 128, 0.18);
+  color: #fff;
+  font-family: inherit;
+  font-size: 1rem;
+}
+.weather-card .search-weather-location button {
+  margin-left: 0.5em;
+  outline: none;
+  border: none;
+  border-radius: 50%;
+  font-size: 1em;
+  height: 37px;
+  width: 37px;
+  background: rgba(128, 128, 128, 0.18);
+  color: white;
+  cursor: pointer;
+  transition: 0.2s ease-in-out;
+}
+.weather-card .search-weather-location button:hover {
+  background: rgb(128, 128, 128);
+}
 .weather-card .main-weather-infos {
   display: flex;
   flex-direction: column;
