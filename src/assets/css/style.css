@@ -48,7 +48,7 @@ body p {
   margin: 1em;
   display: flex;
   flex-direction: column;
-  gap: 3em;
+  gap: 1em;
 }
 .weather-card .main-weather-infos {
   display: flex;
