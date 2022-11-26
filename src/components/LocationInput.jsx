@@ -15,11 +15,11 @@ export default function LocationInput({
         <input
           type="text"
           value={location}
-          onKeyPress={onEnterKeyPress()}
+          onKeyPress={(e) => onEnterKeyPress(e)}
           onChange={(e) => onChangeLocation(e.target.value)}
           placeholder="Rechercher une ville"
         ></input>
-        <button type="submit" onClick={(e) => onSubmitLocation()}>
+        <button type="submit" onClick={() => onSubmitLocation()}>
           <FontAwesomeIcon icon={faMagnifyingGlass} />
         </button>
       </div>

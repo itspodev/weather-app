@@ -4,43 +4,103 @@ import ExtraWeatherInfos from "./ExtraWeatherInfos";
 import LocationInput from "./LocationInput";
 
 export default function WeatherCard() {
-  const [data, setData] = React.useState({});
-  const [location, setLocation] = React.useState("");
   const apiKey = "4e9176c4db0c574ed7144481800fb0dc";
+  const [city, setCity] = React.useState("");
+  const [lat, setLat] = React.useState("");
+  const [lon, setLon] = React.useState("");
+  const [country, setCountry] = React.useState("");
+  const [data, setData] = React.useState([]);
+  const [isLoaded, setIsLoaded] = React.useState(false);
 
-  const geoByCityNameAPIUrl = `https://api.openweathermap.org/geo/1.0/direct?q=${location}&appid=${apiKey}`;
-  const weatherByLatLonAPIUrl = `https://api.openweathermap.org/data/2.5/weather?lat=5&lon=5&appid=${apiKey}`;
+  // const geoByCityNameAPIUrl = `https://api.openweathermap.org/geo/1.0/direct?q=${city}&appid=${apiKey}`;
+  // const weatherByLatLonAPIUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}`;
 
-  // fetch(geoByCityNameAPIUrl).then((res) => {
-  //   setData(res.json());
-  //   console.log(data);
-  // });
-  const fetchbyCityName = () => {};
+  React.useEffect(() => {
+    if (isLoaded) {
+      const geoByCityNameAPIUrl = `https://api.openweathermap.org/geo/1.0/direct?q=${city}&appid=${apiKey}`;
+      fetch(geoByCityNameAPIUrl)
+        .then((res) => res.json())
+        .then((data, i = 0) => {
+          setLat(data[i].lat);
+          setLon(data[i].lon);
+          setCountry(data[i].country);
+          console.log(data);
+        })
+        .catch((err) => {
+          console.error(err);
+        });
+    }
+    return () => {
+      setIsLoaded(false);
+    };
+  }, [isLoaded, city]);
 
-  const fetchbyLatLon = () => {};
+  React.useEffect(() => {
+    if (lat !== "" && lon !== "") {
+      const weatherByLatLonAPIUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}`;
+      fetch(weatherByLatLonAPIUrl)
+        .then((res) => res.json())
+        .then((data) => {
+          setData(data);
+          console.log(data);
+        })
+        .catch((err) => {
+          console.error(err);
+        });
+    }
+    return () => {
+      setLat("");
+      setLon("");
+    };
+  }, [lat, lon]);
 
-  const handleLocationInfos = () => {
-    console.log(location);
-  };
   const handleKeyPress = (e) => {
     if (e.key === "Enter") {
-      console.log(location);
+      setIsLoaded(true);
     }
+  };
+
+  const handleLocationInfos = () => {
+    setIsLoaded(true);
   };
 
   return (
     <article className="weather-card">
       <LocationInput
-        location={location}
-        onChangeLocation={setLocation}
+        location={city}
+        onChangeLocation={setCity}
         onSubmitLocation={handleLocationInfos}
-        onEnterKeyPress={(e) => handleKeyPress}
+        onEnterKeyPress={handleKeyPress}
       ></LocationInput>
-      <MainWeatherInfos></MainWeatherInfos>
+      <MainWeatherInfos
+        city={data.name}
+        country={country ? ` (${country})` : " (krypton)"}
+        temp={data.main ? `${Math.round(data.main.temp - 273.15)}°` : "45°"}
+        desc={data.main ? `${data.weather[0].main}` : "Sun"}
+        maxTemp={
+          data.main ? `${Math.round(data.main.temp_max - 273.15)}` : "50"
+        }
+        minTemp={
+          data.main ? `${Math.round(data.main.temp_min - 273.15)}` : "44"
+        }
+      ></MainWeatherInfos>
       <div className="extra-weather-infos">
-        <ExtraWeatherInfos name="feels" content="65°F"></ExtraWeatherInfos>
-        <ExtraWeatherInfos name="humidity" content="20%"></ExtraWeatherInfos>
-        <ExtraWeatherInfos name="wind" content="12 MPH"></ExtraWeatherInfos>
+        <ExtraWeatherInfos
+          name="feels like"
+          content={
+            data.main ? `${Math.round(data.main.feels_like - 273.15)}°` : "47"
+          }
+        ></ExtraWeatherInfos>
+        <ExtraWeatherInfos
+          name="humidity"
+          content={data.main ? `${data.main.humidity}%` : "0%"}
+        ></ExtraWeatherInfos>
+        <ExtraWeatherInfos
+          name="wind"
+          content={
+            data.main ? `${Math.round(data.wind.speed * 1.49)} km/h` : "0 MPH"
+          }
+        ></ExtraWeatherInfos>
       </div>
     </article>
   );

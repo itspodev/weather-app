@@ -13,6 +13,7 @@ body h1 {
 }
 body h2 {
   font-size: 3rem;
+  text-align: center;
 }
 body p {
   font-size: 1.6rem;
@@ -83,6 +84,9 @@ body p {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+.weather-card .main-weather-infos .main-weather-infos__city span {
+  font-size: 1.5rem;
 }
 .weather-card .extra-weather-infos {
   display: flex;
