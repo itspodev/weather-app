@@ -24,7 +24,7 @@ export default function WeatherCard() {
           setLat(data[i].lat);
           setLon(data[i].lon);
           setCountry(data[i].country);
-          console.log(data);
+          // console.log(data);
         })
         .catch((err) => {
           console.error(err);
@@ -42,10 +42,10 @@ export default function WeatherCard() {
         .then((res) => res.json())
         .then((data) => {
           setData(data);
-          console.log(data);
+          // console.log(data);
         })
         .catch((err) => {
-          console.error(err);
+          // console.error(err);
         });
     }
     return () => {
