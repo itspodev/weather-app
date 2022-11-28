@@ -49,6 +49,7 @@ body {
   border-radius: 30px;
   width: 100%;
   max-width: 420px;
+  min-height: 496px;
   padding: 2em;
   margin: 1em;
   display: flex;
@@ -84,6 +85,7 @@ body {
     }
   }
   .main-weather-infos {
+    min-height: 258px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -96,6 +98,7 @@ body {
     justify-content: space-evenly;
     gap: 1em;
     div:nth-child(n) {
+      min-height: 103.5px;
       text-align: center;
       background-color: rgba(255, 255, 255, 0.2);
       padding: 1em;
@@ -134,17 +137,22 @@ body {
   }
   .weather-card {
     max-width: 300px;
+    min-height: 356.5px;
     .search-weather-location {
       input {
         font-size: 0.8rem;
       }
     }
     .main-weather-infos {
+      min-height: 140.5px;
       .main-weather-infos__city span {
         font-size: 1rem;
       }
     }
     .extra-weather-infos {
+      div:nth-child(n) {
+        min-height: 83px;
+      }
       p:nth-child(1) {
         text-transform: uppercase;
         font-size: 0.8rem;

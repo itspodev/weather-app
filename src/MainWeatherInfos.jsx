@@ -1,8 +1,8 @@
 export default function MainWeatherInfos({
-  city = "Kandor",
+  city = "",
   country = "",
   temp = "",
-  desc = "-----",
+  desc = "",
   maxTemp = "",
   minTemp = "",
 }) {
@@ -15,8 +15,8 @@ export default function MainWeatherInfos({
       <h1 className="main-weather-infos__temp">{temp}</h1>
       <p className="main-weather-infos__desc">{desc}</p>
       <p className="main-weather-infos__maxmin">
-        <span>Max.{maxTemp}°</span>
-        <span> Min.{minTemp}°</span>
+        <span>{maxTemp}</span>
+        <span> {minTemp}</span>
       </p>
     </div>
   );

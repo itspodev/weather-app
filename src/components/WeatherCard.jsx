@@ -74,31 +74,27 @@ export default function WeatherCard() {
       ></LocationInput>
       <MainWeatherInfos
         city={data.name}
-        country={country ? ` (${country})` : " (krypton)"}
-        temp={data.main ? `${Math.round(data.main.temp - 273.15)}°` : "45°"}
-        desc={data.main ? `${data.weather[0].main}` : "Sun"}
-        maxTemp={
-          data.main ? `${Math.round(data.main.temp_max - 273.15)}` : "50"
-        }
-        minTemp={
-          data.main ? `${Math.round(data.main.temp_min - 273.15)}` : "44"
-        }
+        country={country ? ` (${country})` : ""}
+        temp={data.main ? `${Math.round(data.main.temp - 273.15)}°` : ""}
+        desc={data.main ? `${data.weather[0].main}` : ""}
+        maxTemp={data.main ? `Max.${Math.round(data.main.temp_max - 273.15)}°` : ""}
+        minTemp={data.main ? `Min.${Math.round(data.main.temp_min - 273.15)}°` : ""}
       ></MainWeatherInfos>
       <div className="extra-weather-infos">
         <ExtraWeatherInfos
           name="feels like"
           content={
-            data.main ? `${Math.round(data.main.feels_like - 273.15)}°` : "47"
+            data.main ? `${Math.round(data.main.feels_like - 273.15)}°` : ""
           }
         ></ExtraWeatherInfos>
         <ExtraWeatherInfos
           name="humidity"
-          content={data.main ? `${data.main.humidity}%` : "0%"}
+          content={data.main ? `${data.main.humidity}%` : ""}
         ></ExtraWeatherInfos>
         <ExtraWeatherInfos
           name="wind"
           content={
-            data.main ? `${Math.round(data.wind.speed * 1.49)} km/h` : "0 MPH"
+            data.main ? `${Math.round(data.wind.speed * 1.49)} km/h` : ""
           }
         ></ExtraWeatherInfos>
       </div>
