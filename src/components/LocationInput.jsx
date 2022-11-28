@@ -17,7 +17,7 @@ export default function LocationInput({
           value={location}
           onKeyPress={(e) => onEnterKeyPress(e)}
           onChange={(e) => onChangeLocation(e.target.value)}
-          placeholder="Rechercher une ville"
+          placeholder="Rechercher une ville, pays"
         ></input>
         <button type="submit" onClick={() => onSubmitLocation()}>
           <FontAwesomeIcon icon={faMagnifyingGlass} />

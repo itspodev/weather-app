@@ -108,4 +108,40 @@ body p {
   font-size: 1rem;
 }
 
+/*************************************************************/
+/********************    MEDIA QUERIES    ********************/
+/*************************************************************/
+@media screen and (max-width: 480px) {
+  body {
+    font-family: "Roboto Slab", "sans-serif";
+  }
+  body h1 {
+    font-size: 3rem;
+  }
+  body h2 {
+    font-size: 1.6rem;
+    text-align: center;
+  }
+  body p {
+    font-size: 1rem;
+  }
+  .weather-card {
+    max-width: 300px;
+  }
+  .weather-card .search-weather-location input {
+    font-size: 0.8rem;
+  }
+  .weather-card .main-weather-infos .main-weather-infos__city span {
+    font-size: 1rem;
+  }
+  .weather-card .extra-weather-infos p:nth-child(1) {
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    color: #808080;
+  }
+  .weather-card .extra-weather-infos p:nth-child(2) {
+    font-size: 0.8rem;
+  }
+}
+
 /*# sourceMappingURL=style.css.map */
