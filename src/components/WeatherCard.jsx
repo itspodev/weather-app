@@ -36,7 +36,7 @@ export default function WeatherCard({ errorCity = "" }) {
 
   React.useEffect(() => {
     if (lat !== "" && lon !== "") {
-      const weatherByLatLonAPIUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}`;
+      const weatherByLatLonAPIUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`;
       fetch(weatherByLatLonAPIUrl)
         .then((res) => res.json())
         .then((data) => {
@@ -74,22 +74,16 @@ export default function WeatherCard({ errorCity = "" }) {
       <MainWeatherInfos
         city={data.name}
         country={country ? ` (${country})` : ""}
-        temp={data.main ? `${Math.round(data.main.temp - 273.15)}°` : ""}
+        temp={data.main ? `${Math.round(data.main.temp)}°` : ""}
         desc={data.main ? `${data.weather[0].main}` : ""}
-        maxTemp={
-          data.main ? `Max.${Math.round(data.main.temp_max - 273.15)}°` : ""
-        }
-        minTemp={
-          data.main ? `Min.${Math.round(data.main.temp_min - 273.15)}°` : ""
-        }
+        maxTemp={data.main ? `Max.${Math.round(data.main.temp_max)}°` : ""}
+        minTemp={data.main ? `Min.${Math.round(data.main.temp_min)}°` : ""}
         errorCity={isBugged ? errorCity : ""}
       ></MainWeatherInfos>
       <div className="extra-weather-infos">
         <ExtraWeatherInfos
           name="feels like"
-          content={
-            data.main ? `${Math.round(data.main.feels_like - 273.15)}°` : ""
-          }
+          content={data.main ? `${Math.round(data.main.feels_like)}°` : ""}
         ></ExtraWeatherInfos>
         <ExtraWeatherInfos
           name="humidity"
