@@ -3,7 +3,7 @@ import MainWeatherInfos from "../MainWeatherInfos";
 import ExtraWeatherInfos from "./ExtraWeatherInfos";
 import LocationInput from "./LocationInput";
 
-export default function WeatherCard() {
+export default function WeatherCard({ errorCity = "" }) {
   const apiKey = "4e9176c4db0c574ed7144481800fb0dc";
   const [city, setCity] = React.useState("");
   const [lat, setLat] = React.useState("");
@@ -11,9 +11,8 @@ export default function WeatherCard() {
   const [country, setCountry] = React.useState("");
   const [data, setData] = React.useState([]);
   const [isLoaded, setIsLoaded] = React.useState(false);
-
-  // const geoByCityNameAPIUrl = `https://api.openweathermap.org/geo/1.0/direct?q=${city}&appid=${apiKey}`;
-  // const weatherByLatLonAPIUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}`;
+  const [error, setError] = React.useState(null);
+  const [isBugged, setIsBugged] = React.useState(`${error ? true : false}`);
 
   React.useEffect(() => {
     if (isLoaded) {
@@ -24,16 +23,16 @@ export default function WeatherCard() {
           setLat(data[i].lat);
           setLon(data[i].lon);
           setCountry(data[i].country);
-          // console.log(data);
+          setIsBugged(false);
         })
         .catch((err) => {
-          console.error(err);
+          setError(err);
         });
     }
     return () => {
       setIsLoaded(false);
     };
-  }, [isLoaded, city]);
+  }, [isLoaded, city, error]);
 
   React.useEffect(() => {
     if (lat !== "" && lon !== "") {
@@ -42,10 +41,6 @@ export default function WeatherCard() {
         .then((res) => res.json())
         .then((data) => {
           setData(data);
-          // console.log(data);
-        })
-        .catch((err) => {
-          // console.error(err);
         });
     }
     return () => {
@@ -53,6 +48,10 @@ export default function WeatherCard() {
       setLon("");
     };
   }, [lat, lon]);
+
+  if (error) {
+    throw error;
+  }
 
   const handleKeyPress = (e) => {
     if (e.key === "Enter") {
@@ -77,8 +76,13 @@ export default function WeatherCard() {
         country={country ? ` (${country})` : ""}
         temp={data.main ? `${Math.round(data.main.temp - 273.15)}°` : ""}
         desc={data.main ? `${data.weather[0].main}` : ""}
-        maxTemp={data.main ? `Max.${Math.round(data.main.temp_max - 273.15)}°` : ""}
-        minTemp={data.main ? `Min.${Math.round(data.main.temp_min - 273.15)}°` : ""}
+        maxTemp={
+          data.main ? `Max.${Math.round(data.main.temp_max - 273.15)}°` : ""
+        }
+        minTemp={
+          data.main ? `Min.${Math.round(data.main.temp_min - 273.15)}°` : ""
+        }
+        errorCity={isBugged ? errorCity : ""}
       ></MainWeatherInfos>
       <div className="extra-weather-infos">
         <ExtraWeatherInfos

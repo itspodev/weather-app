@@ -92,6 +92,9 @@ body {
     .main-weather-infos__city span {
       font-size: 1.5rem;
     }
+    .main-weather-infos__error {
+      color: red;
+    }
   }
   .extra-weather-infos {
     display: flex;

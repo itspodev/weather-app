@@ -5,6 +5,7 @@ export default function MainWeatherInfos({
   desc = "",
   maxTemp = "",
   minTemp = "",
+  errorCity = "",
 }) {
   return (
     <div className="main-weather-infos">
@@ -18,6 +19,7 @@ export default function MainWeatherInfos({
         <span>{maxTemp}</span>
         <span> {minTemp}</span>
       </p>
+      <p className="main-weather-infos__error">{errorCity}</p>
     </div>
   );
 }

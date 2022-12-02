@@ -90,6 +90,9 @@ body p {
 .weather-card .main-weather-infos .main-weather-infos__city span {
   font-size: 1.5rem;
 }
+.weather-card .main-weather-infos .main-weather-infos__error {
+  color: red;
+}
 .weather-card .extra-weather-infos {
   display: flex;
   justify-content: space-evenly;
