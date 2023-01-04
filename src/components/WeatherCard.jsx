@@ -92,7 +92,7 @@ export default function WeatherCard({ errorCity = "" }) {
         <ExtraWeatherInfos
           name="wind"
           content={
-            data.main ? `${Math.round(data.wind.speed * 1.49)} km/h` : null
+            data.main ? `${Math.round(data.wind.speed * 1.49)} km/h` : ""
           }
         ></ExtraWeatherInfos>
       </div>
