@@ -1,17 +1,23 @@
 export default function MainWeatherInfos({
-  city = "",
   country = "",
-  temp = "",
-  desc = "",
-  maxTemp = "",
-  minTemp = "",
   errorCity = "",
+  infos = {},
 }) {
+  console.log(infos);
+  const city = infos?.name;
+  const temp = infos?.main ? `${Math.round(infos?.main?.temp)}°` : " ";
+  const desc = infos?.main ? `${infos?.weather?.[0]?.main}` : "";
+  const maxTemp = infos?.main
+    ? `Max.${Math.round(infos?.main?.temp_max)}°`
+    : "";
+  const minTemp = infos?.main
+    ? `Min.${Math.round(infos?.main?.temp_min)}°`
+    : "";
   return (
     <div className="main-weather-infos">
       <h2 className="main-weather-infos__city">
         {city}
-        <span>{country}</span>
+        <span>{country ? ` (${country})` : ""}</span>
       </h2>
       <h1 className="main-weather-infos__temp">{temp}</h1>
       <p className="main-weather-infos__desc">{desc}</p>
