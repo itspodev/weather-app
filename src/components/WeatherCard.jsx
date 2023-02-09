@@ -65,12 +65,7 @@ export default function WeatherCard({ errorCity = "" }) {
       ></LocationInput>
       <MainWeatherInfos
         infos={data}
-        // city={data.name}
         country={dataByName?.country}
-        // temp={data.main ? `${Math.round(data.main.temp)}°` : ""}
-        // desc={data.main ? `${data.weather[0].main}` : ""}
-        // maxTemp={data.main ? `Max.${Math.round(data.main.temp_max)}°` : ""}
-        // minTemp={data.main ? `Min.${Math.round(data.main.temp_min)}°` : ""}
         errorCity={isBugged ? errorCity : ""}
       ></MainWeatherInfos>
       <div className="extra-weather-infos">
