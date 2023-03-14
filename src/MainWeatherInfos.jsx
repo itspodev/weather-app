@@ -3,7 +3,7 @@ export default function MainWeatherInfos({
   errorCity = "",
   infos = {},
 }) {
-  console.log(infos);
+  // console.log(infos);
   const city = infos?.name;
   const temp = infos?.main ? `${Math.round(infos?.main?.temp)}°` : " ";
   const desc = infos?.main ? `${infos?.weather?.[0]?.main}` : "";
