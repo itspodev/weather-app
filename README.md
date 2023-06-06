@@ -17,6 +17,6 @@ React application scratched with [create-react-app](https://create-react-app.dev
 
 ## To see this project in action locally :
 
-- git clone 
+- git clone https://github.com/Ponifty/weather-app.git
 - npm install
 - npm start
